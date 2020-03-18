@@ -30,7 +30,7 @@ public class GraphList {
     }
 
 
-    public void addEdgeMap(int from, int to, int capacity, int cost) {
+    protected void addEdgeMap(int from, int to, int capacity, int cost) {
 
         Edge e1 = new Edge(from, to, capacity, cost);
         if (mapGraph.containsKey(e1.toHashcode()))
@@ -45,7 +45,7 @@ public class GraphList {
         mapGraph.put(e1.toHashcode(), e1);
     }
 
-    public void resetGraph() {
+    protected void resetGraph() {
         //Sets remaining capacity back to initial value
         for (List<Edge> path : graph) {
             for (Edge e : path) {
@@ -54,19 +54,19 @@ public class GraphList {
         }
     }
 
-    public void printGraph(){
-        for (int i = 0; i < graph.length ; i++) {
+    protected void printGraph() {
+        for (int i = 0; i < graph.length; i++) {
             for (Edge edge : graph[i]) {
                 if (edge.isResidual() == false)
-                    System.out.println(edge.toString(0,0));
+                    System.out.println(edge.toString(0, 0));
             }
         }
     }
 
-    public void printResidualGraph(){
-        for (int i = 0; i < graph.length ; i++) {
+    protected void printResidualGraph() {
+        for (int i = 0; i < graph.length; i++) {
             for (Edge edge : graph[i]) {
-                    System.out.println(edge.toString(0,0));
+                System.out.println(edge.toString(0, 0));
             }
         }
     }
@@ -90,7 +90,7 @@ public class GraphList {
                 out += e.flow * e.originalCost;
             }
         }
-        return out/2;
+        return out / 2;
     }
 
     //Marks node 'i' as visited.

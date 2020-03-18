@@ -12,15 +12,15 @@ public class CycleCanceling {
 
     protected static final int INF = Integer.MAX_VALUE / 2;
 
-    public void solve() {
+    protected void solve() {
         //Initialize max flow by using the Ford Fulkerson Algorithm
         FordFulkersonMaxFlow maxFlow = new FordFulkersonMaxFlow(graph);
         maxFlow.solve();
         //While the residual graph contains a negative cycle, search for the cycle and cancel it
         do {
             //Print graph after every iteration
-            graph.printGraph();
-            System.out.println("----------------------------------------------------------------------------");
+/*            graph.printGraph();
+            System.out.println("----------------------------------------------------------------------------");*/
             // If there is no negative cycle, terminate
         } while (cancleCycle() == false);
     }
@@ -33,7 +33,7 @@ public class CycleCanceling {
         dist[graph.t] = 0;
         //Array with all edges needed for the shortest path
         Edge[] prev = new Edge[graph.n];
-        Edge e = new Edge(0, 0, 0);
+        Edge e = new Edge(0, 0, 0,0);
         LinkedList<Edge> path = new LinkedList<>();
         //List with all edges of the circle
         LinkedList<Edge> circle = new LinkedList<>();
@@ -90,7 +90,7 @@ public class CycleCanceling {
                             }
                             circle.add(e);
                             //Print circle
-                            System.out.println("Circle: " + e.toString(0, 0));
+                            //System.out.println("Circle: " + e.toString(0, 0));
 
                             graph.visit(e.to);
                         }

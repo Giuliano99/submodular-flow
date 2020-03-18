@@ -2,25 +2,21 @@ import java.util.Random;
 
 public class GraphFactory {
 
-    public int startNode, endNode, nrOfNodes;
+    protected int startNode, endNode, nrOfNodes;
 
-    public int getStartNode() {
+    protected int getStartNode() {
         return startNode;
     }
 
-    public int getEndNode() {
+    protected int getEndNode() {
         return endNode;
     }
 
-    public int getNrOfNodes() {
-        return nrOfNodes;
-    }
 
-    public GraphList generateGraphMap() {
+    protected GraphList generateGraphMap() {
 
 
         //Small Test Graph
-
         startNode = 0;
         endNode = 5;
         nrOfNodes = 6;
@@ -47,16 +43,19 @@ public class GraphFactory {
 
         //Randomly generated graph
         //Number of nodes and edges can be specified variably
-/*        startNode = 0;
+       /* startNode = 0;
         endNode = 1000;
-        nrOfnodes = endNode + 1;
+        nrOfNodes = endNode + 1;
 
         GraphList g;
-        g = new GraphList(nrOfnodes, startNode, endNode);
+        g = new GraphList(nrOfNodes, startNode, endNode);
         //Number of edges from start node/to the end node
         int startEndEdges = 100;
         //Number of edges in the graph
         int edges = endNode/2;
+        //Prevents array overflow
+        if (edges > endNode) edges = endNode;
+        if (startEndEdges > endNode) edges = endNode;
 
         //start edges
         for (int i = 0; i < startEndEdges; i++) {
@@ -78,7 +77,7 @@ public class GraphFactory {
     }
 
 
-    public static int getRandomNumber() {
+    private static int getRandomNumber() {
         Random randomgenerator = new Random();
         int out = randomgenerator.nextInt(1000) + 1;
         return out;

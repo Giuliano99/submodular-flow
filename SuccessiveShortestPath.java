@@ -7,21 +7,23 @@ import static java.lang.Math.min;
 public class SuccessiveShortestPath {
 
     GraphList graph;
+
     public SuccessiveShortestPath(int n, int s, int t, GraphList gr) {
         this.graph = gr;
     }
+
     protected static final long INF = Long.MAX_VALUE / 2;
 
-    public void solve() {
+    protected void solve() {
         List<Edge> path;
         //As long as there is a way from s to t execute
         while ((path = getAugumentingpath()).size() != 0) {
             //Find bottle neck edge value along path
             long bottleNeck = Long.MAX_VALUE;
-            for (Edge edge : path){
+            for (Edge edge : path) {
                 bottleNeck = min(bottleNeck, edge.remainingCapacity());
                 //Print path
-                System.out.println("Path: " + edge.toString(0,0));
+                //System.out.println("Path: " + edge.toString(0, 0));
             }
 
             //Retrace path while augmenting the flow
@@ -29,13 +31,13 @@ public class SuccessiveShortestPath {
                 edge.augment(bottleNeck);
             }
             //Print graph after every iteration
-            graph.printGraph();
-            System.out.println("----------------------------------------------------------------------------");
+/*            graph.printGraph();
+            System.out.println("----------------------------------------------------------------------------");*/
         }
 
     }
 
-    private List <Edge> getAugumentingpath() {
+    private List<Edge> getAugumentingpath() {
         long[] dist = new long[graph.n];
         Arrays.fill(dist, INF);
         dist[graph.s] = 0;

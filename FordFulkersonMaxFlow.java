@@ -1,12 +1,13 @@
 import static java.lang.Math.min;
+
 import java.util.List;
 
 public class FordFulkersonMaxFlow {
 
-GraphList graph;
+    GraphList graph;
 
-public FordFulkersonMaxFlow(GraphList gr){
-    this.graph = gr;
+    public FordFulkersonMaxFlow(GraphList gr) {
+        this.graph = gr;
     }
 
     protected static final long INF = Long.MAX_VALUE / 2;
