@@ -24,7 +24,10 @@ public class SuccessiveShortestPath {
                 bottleNeck = min(bottleNeck, edge.remainingCapacity());
                 //Print path
                 //System.out.println("Path: " + edge.toString(0, 0));
+
             }
+         /*   System.out.println("Cost: " + graph.countCost());
+            System.out.println("---");*/
 
             //Retrace path while augmenting the flow
             for (Edge edge : path) {

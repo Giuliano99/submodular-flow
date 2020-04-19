@@ -5,7 +5,8 @@ public class SubmodularFlow {
     public static void main(String[] args) {
         //Generate graph
         GraphFactory gen = new GraphFactory();
-        GraphList graph = gen.generateGraphMap();
+        GraphList graph = gen.generateSymGraph();
+        //GraphList graph = gen.generateRandomGraph();
         //Initialize start node, end node, number of nodes
         int startNode = gen.getStartNode();
         int end = gen.getEndNode();
@@ -13,6 +14,7 @@ public class SubmodularFlow {
         //Create objects of both algorithms
         SuccessiveShortestPath Algo1 = new SuccessiveShortestPath(startNode, end, nrOfNodes, graph);
         CycleCanceling Algo2 = new CycleCanceling(startNode, end, nrOfNodes, graph);
+
 
         //Print graph
         //graph.printGraph();

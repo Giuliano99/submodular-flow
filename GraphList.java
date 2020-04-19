@@ -5,7 +5,7 @@ public class GraphList {
     protected final int n, s, t;
     protected long maxFlow;
     protected List<Edge>[] graph;
-    protected HashMap<String, Edge> mapGraph;
+    protected HashMap<String, Edge> map;
     private int visitedToken = 1;
     private int[] visited;
 
@@ -14,26 +14,23 @@ public class GraphList {
         this.s = s;
         this.t = t;
         initializeGraph();
-        initializeGraphMap();
         visited = new int[n];
     }
 
-    //Construct an empty graph with n nodes including the source and sink nodes.
+    //Construct an empty graph with n nodes including the source and sink nodes
     private void initializeGraph() {
+        map = new HashMap<>();
         graph = new List[n];
-        for (int i = 0; i < n; i++) graph[i] = new ArrayList<Edge>();
+        for (int i = 0; i < n; i++) graph[i] = new ArrayList<>();
+
+
     }
 
 
-    private void initializeGraphMap() {
-        mapGraph = new HashMap<>();
-    }
-
-
-    protected void addEdgeMap(int from, int to, int capacity, int cost) {
+    protected void addEdge(int from, int to, int capacity, int cost) {
 
         Edge e1 = new Edge(from, to, capacity, cost);
-        if (mapGraph.containsKey(e1.toHashcode()))
+        if (map.containsKey(e1.toHashcode()) || from == to)
             return;
         Edge e2 = new Edge(to, from, 0, -cost);
         e1.residual = e2;
@@ -42,7 +39,7 @@ public class GraphList {
         graph[from].add(e1);
         graph[to].add(e2);
 
-        mapGraph.put(e1.toHashcode(), e1);
+        map.put(e1.toHashcode(), e1);
     }
 
     protected void resetGraph() {
@@ -56,6 +53,7 @@ public class GraphList {
 
     protected void printGraph() {
         for (int i = 0; i < graph.length; i++) {
+            System.out.println(graph[i]);
             for (Edge edge : graph[i]) {
                 if (edge.isResidual() == false)
                     System.out.println(edge.toString(0, 0));
@@ -66,6 +64,7 @@ public class GraphList {
     protected void printResidualGraph() {
         for (int i = 0; i < graph.length; i++) {
             for (Edge edge : graph[i]) {
+
                 System.out.println(edge.toString(0, 0));
             }
         }

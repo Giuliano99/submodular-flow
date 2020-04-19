@@ -19,7 +19,9 @@ public class CycleCanceling {
         //While the residual graph contains a negative cycle, search for the cycle and cancel it
         do {
             //Print graph after every iteration
-/*            graph.printGraph();
+            //graph.printGraph();
+          /*  graph.printResidualGraph();
+            System.out.println("Cost: " + graph.countCost());
             System.out.println("----------------------------------------------------------------------------");*/
             // If there is no negative cycle, terminate
         } while (cancleCycle() == false);
@@ -33,7 +35,7 @@ public class CycleCanceling {
         dist[graph.t] = 0;
         //Array with all edges needed for the shortest path
         Edge[] prev = new Edge[graph.n];
-        Edge e = new Edge(0, 0, 0,0);
+        Edge e = new Edge(0, 0, 0, 0);
         LinkedList<Edge> path = new LinkedList<>();
         //List with all edges of the circle
         LinkedList<Edge> circle = new LinkedList<>();
@@ -50,8 +52,6 @@ public class CycleCanceling {
                     }
                 }
         }
-
-
         //Run the Algo a second time, to detect a negative cycle
         for (int i = 0; i < graph.n - 1; i++) {
             for (int from = 0; from < graph.n; from++) {
@@ -71,9 +71,9 @@ public class CycleCanceling {
                                 break;
                             }
                             path.add(e);
-                            /* System.out.println("Circle:" + e.toString(0, 0));*/
                             graph.visit(e.to);
                         }
+
 
                         graph.markAllNodesAsUnvisited();
                         j = path.getLast().from;
